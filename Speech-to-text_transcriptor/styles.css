@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  background: #000010;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.ai-ring {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 rgba(0, 0, 255, 0);
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.ai-ring.listening {
+  animation: rotate 4s linear infinite, pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 30px 10px rgba(0, 0, 255, 0.5);
+}
+
+.ai-ring::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,255,0.1), rgba(0,0,255,0));
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ai-ring.listening::before {
+  animation: pulseOuter 3s ease-in-out infinite;
+  opacity: 1;
+}
+
+@keyframes rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px 10px rgba(0, 0, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 60px 20px rgba(0, 0, 255, 1);
+  }
+}
+
+@keyframes pulseOuter {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.listen-btn,
+.copy-btn,
+.download-btn {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #1e90ff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.copy-btn,
+.download-btn {
+  background: #000;
+  color: #fff;
+}
+
+.copy-btn:disabled,
+.download-btn:disabled {
+  background: #333;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.listen-btn:hover,
+.copy-btn:hover,
+.download-btn:hover {
+  background-color: #2988ff;
+}
+
+.language-box {
+  background-color: #111;
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.language-select {
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.notification {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #ff3860;
+  min-height: 24px;
+}
+
+.transcript {
+  margin-top: 20px;
+  background-color: rgba(0, 0, 30, 0.6);
+  padding: 16px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #cceeff;
+  text-align: center;
+}
